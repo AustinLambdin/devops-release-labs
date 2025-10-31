@@ -1,0 +1,7 @@
+- task: Docker@2
+  inputs:
+    command: buildAndPush
+    repository: myapp
+    dockerfile: '**/Dockerfile'
+    containerRegistry: 'dockerhub-connection'
+    tags: 'latest'

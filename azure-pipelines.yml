@@ -1,7 +1,20 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  imageName: 'myapp'
+
+steps:
 - task: Docker@2
+  displayName: Build and Push Docker image
   inputs:
     command: buildAndPush
-    repository: myapp
+    repository: $(imageName)
     dockerfile: '**/Dockerfile'
     containerRegistry: 'dockerhub-connection'
-    tags: 'latest'
+    tags: |
+      latest
+      $(Build.BuildId)

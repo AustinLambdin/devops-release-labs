@@ -1,5 +1,5 @@
-variables:
-  imageName: "devops-lab-test"
+pool:
+  name: "LocalPool"
 
 steps:
   - task: Docker@2

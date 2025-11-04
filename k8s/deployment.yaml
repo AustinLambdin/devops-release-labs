@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: devops-release-lab
-  labels:
-    app: devops-release-lab
 spec:
   replicas: 1
   selector:
@@ -19,11 +17,10 @@ spec:
           image: austinlambdin/devops-lab-test:latest
           ports:
             - containerPort: 8080
-          imagePullPolicy: Always
           resources:
             requests:
               cpu: "100m"
               memory: "128Mi"
             limits:
-              cpu: "250m"
+              cpu: "500m"
               memory: "256Mi"

@@ -2,21 +2,22 @@ trigger:
 - main
 
 pool:
-  name: 'LocalPool'
+  name: LocalPool  # or vmImage: 'ubuntu-latest' if you switch to hosted
 
 variables:
   imageName: 'devops-lab-test'
 
 steps:
-- checkout: self
+  - checkout: self
 
-- task: Docker@2
-  displayName: 'Build and Push Docker image'
-  inputs:
-    containerRegistry: 'dockerhub-connection'
-    repository: 'yourdockerhubusername/devops-lab-test'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
-    tags: |
-      latest
-      $(Build.BuildId)
+  - task: Docker@2
+    displayName: Build and push Docker image
+    inputs:
+      command: buildAndPush
+      containerRegistry: 'dockerhub-connection'   # <-- your ADO service connection name
+      repository: 'yourdockerhubusername/devops-lab-test'
+      dockerfile: 'Dockerfile'
+      buildContext: '$(Build.SourcesDirectory)'
+      tags: |
+        latest
+        $(Build.BuildNumber)

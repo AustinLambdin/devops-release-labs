@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-release-lab
+  labels:
+    app: devops-release-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devops-release-lab
+  template:
+    metadata:
+      labels:
+        app: devops-release-lab
+    spec:
+      containers:
+        - name: devops-release-lab
+          image: austinlambdin/devops-lab-test:latest
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always

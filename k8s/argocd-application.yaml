@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/AustinLambdin/DevOps-Release-Labs.git
+    repoURL: https://github.com/AustinLambdin/devops-release-labs.git
     targetRevision: main
     path: k8s
   destination:
